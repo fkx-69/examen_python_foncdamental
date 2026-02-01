@@ -53,9 +53,21 @@ Cette soumission répond à toutes les exigences du devoir à la maison :
 
 ## 🚀 Installation
 
-Pour installer le package en mode éditable (recommandé pour le développement) :
+### Option 1 : Installation depuis TestPyPI (Utilisateurs)
+
+Le package est disponible sur TestPyPI. Comme c'est un index de test, il faut spécifier l'URL supplémentaire pour les dépendances standards (pandas, numpy, etc.) :
 
 ```bash
+pip install -i https://test.pypi.org/simple/ ds-toolkit-examen-project
+```
+
+### Option 2 : Installation depuis la source (Développeurs)
+
+Si vous souhaitez contribuer ou modifier le code :
+
+```bash
+git clone https://github.com/votre-username/ds_toolkit.git
+cd ds_toolkit
 pip install -e .
 ```
 
