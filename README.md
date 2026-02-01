@@ -1,94 +1,94 @@
-# Object-Oriented Data Science Toolkit (ds_toolkit)
+# Boîte à outils de science des données orientée objet (ds_toolkit)
 
-**Course:** Master of Data Science - Object-Oriented Programming  
-**Assignment:** Final Project & Take-Home Assignment
+**Cours :** Master en Science des Données - Programmation Orientée Objet  
+**Devoir :** Projet Final & Devoir à la Maison
 
-## Project Overview
+## Vue d'ensemble du projet
 
-This project refactors procedural data science code into a robust, modular, and reusable object-oriented package (`ds_toolkit`). It demonstrates the application of advanced software engineering principles to data science workflows, including design patterns, unit testing, and solid package structure.
+Ce projet refactorise du code de science des données procédural en un package orienté objet robuste, modulaire et réutilisable (`ds_toolkit`). Il démontre l'application de principes avancés de génie logiciel aux flux de travail de science des données, y compris les modèles de conception, les tests unitaires et une structure de package solide.
 
-## 📋 Features & Requirements Fulfillment
+## 📋 Fonctionnalités & Respect des Exigences
 
-This submission addresses all requirements of the Take-Home Assignment:
+Cette soumission répond à toutes les exigences du devoir à la maison :
 
-1.  **Complete Package Structure**:
-    - Source code organized in `ds_toolkit/` directory.
-    - `setup.py` included for installation (`pip install -e .`).
-    - Clear separation of concerns (Cleaning, Pipeline, Validation).
+1.  **Structure complète du package** :
+    - Code source organisé dans le répertoire `ds_toolkit/`.
+    - `setup.py` inclus pour l'installation (`pip install -e .`).
+    - Séparation claire des préoccupations (Nettoyage, Pipeline, Validation).
 
-2.  **Design Patterns Implemented**:
-    - **Facade Pattern** (`ds_toolkit/facade.py`): The `DataSciencePackage` class provides a simplified, unified interface for the entire workflow (Cleaning -> Modeling), hiding complexity from the user.
-    - **Strategy Pattern** (`ds_toolkit/cross_validation.py`): `CrossValidationStrategy` allows dynamic switching between validation algorithms (e.g., `KFold`, `StratifiedKFold`) without modifying the context.
-    - **Decorator Pattern** (`ds_toolkit/utils.py`): `logging_decorator` and `timing_decorator` extend function behavior (logging, profiling) without modifying the source code.
-    - **Template Method** (Implicit in `DataCleaner`): The `clean()` method defines the skeleton of the cleaning operation, calling specific steps in order.
+2.  **Modèles de conception implémentés** :
+    - **Modèle Façade** (`ds_toolkit/facade.py`) : La classe `DataSciencePackage` fournit une interface simplifiée et unifiée pour l'ensemble du flux de travail (Nettoyage -> Modélisation), masquant la complexité à l'utilisateur.
+    - **Modèle Stratégie** (`ds_toolkit/cross_validation.py`) : `CrossValidationStrategy` permet de changer dynamiquement d'algorithme de validation (par ex., `KFold`, `StratifiedKFold`) sans modifier le contexte.
+    - **Modèle Décorateur** (`ds_toolkit/utils.py`) : `logging_decorator` et `timing_decorator` étendent le comportement des fonctions (journalisation, profilage) sans modifier le code source.
+    - **Méthode Modèle** (Implicite dans `DataCleaner`) : La méthode `clean()` définit le squelette de l'opération de nettoyage, appelant des étapes spécifiques dans l'ordre.
 
-3.  **Comprehensive Documentation**:
-    - This README provides installation, usage, and architectural details.
-    - Code is documented with docstrings.
+3.  **Documentation complète** :
+    - Ce README fournit des instructions d'installation, d'utilisation et des détails architecturaux.
+    - Le code est documenté avec des docstrings.
 
-4.  **Unit Testing**:
-    - Tests located in `tests/` directory.
-    - Covers data cleaning logic and pipeline orchestration.
-    - Run via `python -m unittest discover tests`.
+4.  **Tests unitaires** :
+    - Tests situés dans le répertoire `tests/`.
+    - Couvre la logique de nettoyage des données et l'orchestration du pipeline.
+    - Exécuter via `python -m unittest discover tests`.
 
-## 📂 Project Structure
+## 📂 Structure du Projet
 
 ```
 .
-├── ds_toolkit/                # Main Python Package
-│   ├── __init__.py            # Exports key classes
-│   ├── cleaning.py            # Data Cleaning Module (DataCleaner)
-│   ├── pipeline.py            # ML Pipeline Module (Loader, Splitter, Scaler, Model)
-│   ├── cross_validation.py    # Cross-Validation Strategies
-│   ├── validation.py          # Data Validation Framework
-│   ├── facade.py              # Main Entry Point (Facade)
-│   └── utils.py               # Utilities & Decorators
-├── tests/                     # Unit Test Suite
+├── ds_toolkit/                # Package Python Main
+│   ├── __init__.py            # Exporte les classes clés
+│   ├── cleaning.py            # Module de Nettoyage de Données (DataCleaner)
+│   ├── pipeline.py            # Module Pipeline ML (Loader, Splitter, Scaler, Model)
+│   ├── cross_validation.py    # Stratégies de Validation Croisée
+│   ├── validation.py          # Framework de Validation de Données
+│   ├── facade.py              # Point d'Entrée Principal (Façade)
+│   └── utils.py               # Utilitaires & Décorateurs
+├── tests/                     # Suite de Tests Unitaires
 │   ├── test_cleaning.py
 │   └── test_pipeline.py
-├── exercise_*.py              # Original exercise scripts (for reference)
-├── setup.py                   # Package installation file
-└── README.md                  # Project Documentation
+├── exercise_*.py              # Scripts d'exercices originaux (pour référence)
+├── setup.py                   # Fichier d'installation du package
+└── README.md                  # Documentation du Projet
 ```
 
 ## 🚀 Installation
 
-To install the package in editable mode (recommended for development):
+Pour installer le package en mode éditable (recommandé pour le développement) :
 
 ```bash
 pip install -e .
 ```
 
-## 💻 Usage Examples
+## 💻 Exemples d'Utilisation
 
-### 1. The "Easy Button" (Facade Pattern)
+### 1. Le "Bouton Facile" (Modèle Façade)
 
-The simplest way to run a full analysis is using the Facade:
+Le moyen le plus simple d'exécuter une analyse complète est d'utiliser la Façade :
 
 ```python
 from ds_toolkit.facade import DataSciencePackage
 
-# Initialize
+# Initialiser
 pkg = DataSciencePackage(filepath='customer_churn.csv', target_col='Churn')
 
-# Run everything: load -> clean -> train -> evaluate
+# Tout exécuter : charger -> nettoyer -> entraîner -> évaluer
 pkg.run_full_workflow()
 ```
 
-### 2. Custom Pipeline Construction
+### 2. Construction Personnalisée de Pipeline
 
-For more control, you can compose individual components:
+Pour plus de contrôle, vous pouvez composer des composants individuels :
 
 ```python
 from ds_toolkit.cleaning import DataCleaner
 from ds_toolkit.pipeline import MLPipeline, DataLoader, DataSplitter, Scaler, ModelHandler
 
-# 1. Clean Data
+# 1. Nettoyer les Données
 cleaner = DataCleaner('raw_data.csv')
 cleaner.clean()
 cleaner.save_data('clean_data.csv')
 
-# 2. Build Pipeline
+# 2. Construire le Pipeline
 pipeline = MLPipeline(
     loader=DataLoader('clean_data.csv', target_column='target'),
     splitter=DataSplitter(test_size=0.2),
@@ -96,11 +96,11 @@ pipeline = MLPipeline(
     model_handler=ModelHandler(n_estimators=200)
 )
 
-# 3. Execute
+# 3. Exécuter
 pipeline.run()
 ```
 
-### 3. Using Decorators
+### 3. Utilisation des Décorateurs
 
 ```python
 from ds_toolkit.utils import timing_decorator
@@ -111,24 +111,24 @@ def heavy_computation():
     pass
 ```
 
-## 🧪 Running Tests
+## 🧪 Exécution des Tests
 
-Execute the test suite to ensure everything is working:
+Exécutez la suite de tests pour vous assurer que tout fonctionne :
 
 ```bash
 python -m unittest discover tests
 ```
 
-## 📊 Design Details
+## 📊 Détails de Conception
 
-### Data Cleaning (`cleaning.py`)
+### Nettoyage de Données (`cleaning.py`)
 
-Encapsulates all cleaning logic. Methods like `remove_duplicates` and `handle_missing_values` return `self` to allow method chaining (Fluent Interface style).
+Encapsule toute la logique de nettoyage. Des méthodes comme `remove_duplicates` et `handle_missing_values` retournent `self` pour permettre le chaînage de méthodes (style Interface Fluide).
 
-### ML Pipeline (`pipeline.py`)
+### Pipeline ML (`pipeline.py`)
 
-Follows the **SOLID** principles. The `MLPipeline` depends on abstractions (duck typing in Python) rather than concrete implementations, allowing you to swap out limits like the model or scaler easily.
+Suit les principes **SOLID**. Le `MLPipeline` dépend d'abstractions (typage canard en Python) plutôt que d'implémentations concrètes, ce qui vous permet d'échanger facilement des éléments comme le modèle ou le scaler.
 
 ### Validation (`validation.py`)
 
-An extensible framework where you can add new `ValidationRule` classes (Open/Closed Principle) without modifying the main validator.
+Un framework extensible où vous pouvez ajouter de nouvelles classes `ValidationRule` (Principe Ouvert/Fermé) sans modifier le validateur principal.

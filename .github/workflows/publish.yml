@@ -1,0 +1,38 @@
+name: Publish to TestPyPI
+
+on:
+  push:
+    branches:
+      - main # Ou 'master', selon votre branche principale
+  release:
+    types: [published]
+
+jobs:
+  build-and-publish:
+    name: Build and publish to TestPyPI
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write # IMPORTANT : requis pour l'authentification sans mot de passe (Trusted Publishing)
+      contents: read
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+
+      - name: Install build tools
+        run: |
+          python -m pip install --upgrade pip
+          pip install build
+
+      - name: Build package
+        run: python -m build
+
+      - name: Publish to TestPyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
